@@ -6,6 +6,7 @@ path_list = []
 lock = 0
 # accessing path of each image
 img_path = './images/'
+out_video_path = './videos/output_video.mp4'
 for image in os.listdir(img_path):
     if image.endswith(".jpg"):
         path_list.append(os.path.join(img_path, image))
@@ -17,9 +18,9 @@ for img_path in path_list:
     img_clips.append(slide)
 
 video = concatenate_videoclips(img_clips, method='compose')
-video.write_videofile("output.mp4", fps=24)
+video.write_videofile(out_video_path, fps=24)
 
-clip1 = VideoFileClip("output.mp4")
+clip1 = VideoFileClip(out_video_path)
 subclips = []
 no_of_clips = 7
 x = 0
@@ -40,5 +41,5 @@ final_audio_clip.append(audio1)
 final_audio = concatenate_audioclips(final_audio_clip, method='compose')
 final = concatenate_videoclips(
     subclips, method='compose').set_audio(final_audio)
-final.write_videofile("Generated_story.mp4", fps=24)
-os.remove("./videos/output.mp4")
+final.write_videofile("./videos/generated_story.mp4", fps=24)
+os.remove(out_video_path)
