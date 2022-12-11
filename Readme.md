@@ -11,7 +11,7 @@ Due to GPU and computation limitations we used following components:
 - **A Story Generator** : Open AI API
 - **Story Text To Voice Generator** : Uberduck API
 - **Background Music Generator** : MuBert
-- **Text to Prompt to Image Generator** : Lexica
+- **Text to Prompt to Image Generator** : Replicate
 - **Image, Music, Voice To Video Generator** : MoviePy
 - **Question Answering the Story**: Assembly API, Open AI API
 
