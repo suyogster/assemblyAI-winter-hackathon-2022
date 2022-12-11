@@ -103,4 +103,4 @@ def generate_prompts():
     return final_prompts
 
 
-generate_prompts()
+# generate_prompts()
