@@ -27,6 +27,6 @@ def get_story(prompt):
 
 def gradio_input_to_story(gradio_input):
     # prompt = ''
-    formatted_prompt = "Write me a short story with an ending about " + gradio_input
+    formatted_prompt = "Write me a short story within 150 words with an ending about " + gradio_input
     story = get_story(formatted_prompt)
     return story['choices'][0]['text']

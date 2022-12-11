@@ -108,9 +108,9 @@ def chunking_recursive(no_of_images, prompt, counter):
         return chunking_recursive(no_of_images, prompt, counter+3)
 
 
-def segment_prompts():
+def segment_prompts(audio_length):
     prompt = get_prompt()
-    audio_length = get_audio_length('outputs/audio')  # pass path of audio
+    # audio_length = get_audio_length('outputs/audio')  # pass path of audio
     duration = 5  # number of seconds an image is shown
     no_of_images = round_to_multiple(audio_length, duration)
     chunk = chunking_recursive(no_of_images, prompt, 0)
@@ -130,8 +130,8 @@ def add_key_words():
     return general+[random.choice(light)] + [random.choice(art)]
 
 
-def generate_prompts():
-    prompts = segment_prompts()
+def generate_prompts(audio_length):
+    prompts = segment_prompts(audio_length)
     final_prompts = []
     # print('Prompts: ', prompts, type(prompts))
     for prompt in prompts:

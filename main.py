@@ -12,8 +12,13 @@ from utils import runcmd
 
 if __name__ == '__main__':
     # get gradio text
-    # gradio_input = 'An old man with a happy ending'
+    gradio_input = 'There was a robot living in the planet Jupiter'
+
     # story = gradio_input_to_story(gradio_input)
+    # f = open("./inputs/text/story.txt", "w")
+    # f.write(story)
+    # f.close()
+
     print('Generated Story')
 
     # story_voice = generate_speech(story)
@@ -28,10 +33,10 @@ if __name__ == '__main__':
     # print('Generated background_music')
 
 
-    prompts = generate_prompts()
+    prompts = generate_prompts(audio_length)
     # print('Generated Prompts')
 
-    # story_images = generate_image(prompts)
-    # print('Generated Images')
+    story_images = generate_image(prompts)
+    print('Generated Images')
 
     story_video = generate_video(len(prompts))

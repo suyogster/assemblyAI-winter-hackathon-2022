@@ -10,8 +10,8 @@ version = model.versions.get(
 
 def generate_image(prompts):
     counter = 0
-    for prompt in prompts:
-        prompt = ', '.join(prompt)
+    for item in prompts:
+        prompt = ', '.join(item)
         print('-'*300,prompt)
 
         url = version.predict(prompt=prompt)
@@ -23,7 +23,7 @@ def generate_image(prompts):
         with open('./inputs/images/img_'+str(counter)+'.png', 'wb') as out_file:
             shutil.copyfileobj(response.raw, out_file)
         del response
-        
+
         counter +=1
         # break
     return ''
