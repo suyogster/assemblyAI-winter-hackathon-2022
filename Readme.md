@@ -28,7 +28,7 @@ pip install -r requirements.txt
 ```
 
 ## Run
-python (Python 3.10)
+python (Python 3.10) [Recommended for now]
 ```python (Python 3.10)
 python main.py
 ```
