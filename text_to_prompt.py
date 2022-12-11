@@ -49,7 +49,7 @@ def filter_stop_words(tokens):
     # wordsList = [w[0] for w in tagged if w[-1] in get_tags_list()]
     return wordsList
 
-def get_prompt(story_path = "data/text/story.txt"):
+def get_prompt(story_path = "inputs/text/story.txt"):
     story = read_story(story_path)
     sentences = sentence_split(story)
     tokenized_sentences = map (lambda x: tokenize_sentence(x) ,sentences)
