@@ -33,3 +33,8 @@ pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
+- You can use the API **generateVideo(character_name, plot)** to get the story and the generated video URL from the API.
+
+## Demo
+** Please check us out at <link src="https://huggingface.co/spaces/suyogster/assemblyAI-winter-hackathon-2022"/>**
+
