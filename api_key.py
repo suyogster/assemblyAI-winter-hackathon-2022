@@ -1,0 +1,5 @@
+KEY = "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"
+REPLICATE_TOKEN = "4d62d765b827468b0885f14240f59de8a8ab3b43"
+UBER_DUCK_API_SECRET = "pk_9cd75f67-7fc0-416a-858b-01a80ec8a94e"
+UBER_DUCK_KEY = "pub_xuyxgbxoviagctxhvj"
+OPEN_AI_API_KEY = "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"

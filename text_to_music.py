@@ -6,7 +6,7 @@ from sentence_transformers import SentenceTransformer
 import httpx
 import json
 
-from utils import get_tags_for_prompts, get_mubert_tags_embeddings, get_pat, runcmd
+from utils import get_tags_for_prompts, get_mubert_tags_embeddings, get_pat
 
 minilm = SentenceTransformer('all-MiniLM-L6-v2')
 mubert_tags_embeddings = get_mubert_tags_embeddings(minilm)
@@ -43,15 +43,14 @@ def get_track_by_tags(tags, pat, duration, maxit=20, loop=False):
 def generate_track_by_prompt(email, prompt, duration, loop=False):
     try:
         pat = get_pat(email)
-        _, tags = get_tags_for_prompts(minilm, mubert_tags_embeddings, [prompt, ])[0]
+        _, tags = get_tags_for_prompts(
+            minilm, mubert_tags_embeddings, [prompt, ])[0]
         return get_track_by_tags(tags, pat, int(duration), loop=loop), "Success", ",".join(tags)
     except Exception as e:
         return None, str(e), ""
 
 
-def music_generator(prompt = "Silence, calm, buddha, forest, river, peace"):
-    out,result_msg,tags = generate_track_by_prompt(email="demo@gmail.com",prompt=prompt, duration='30')
+def music_generator(prompt="Silence, calm, buddha, forest, river, peace"):
+    out, result_msg, tags = generate_track_by_prompt(
+        email="demo@gmail.com", prompt=prompt, duration='30')
     return out
-
-
-#runcmd('wget -O music.mp3 '+music_generator)
