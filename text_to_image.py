@@ -1,7 +1,7 @@
 import replicate
-from api_key import REPLICATE_TOKEN
+from api_keys import REPLICATE_TOKEN
 import requests
-
+import shutil
 repl = replicate.Client(api_token=REPLICATE_TOKEN)
 model = repl.models.get("stability-ai/stable-diffusion")
 version = model.versions.get(
@@ -9,7 +9,21 @@ version = model.versions.get(
 
 
 def generate_image(prompts):
-    url = version.predict(prompt=prompts)
-    img_data = requests.get(url).content
-    open(f'./inputs/images/{img_data.title}',
-         'wb').write(img_data)
+    counter = 0
+    for prompt in prompts:
+        prompt = ', '.join(prompt)
+        print('-'*300,prompt)
+
+        url = version.predict(prompt=prompt)
+        # url = 'https://replicate.delivery/pbxt/WVz8GeooKv1jE62fErO3bgoDsTtVipUezBO4BU1yU8YJixRgA/out-0.png'
+        print(url)
+
+        response = requests.get(url[0], stream=True)
+
+        with open('./inputs/images/img_'+str(counter)+'.png', 'wb') as out_file:
+            shutil.copyfileobj(response.raw, out_file)
+        del response
+        
+        counter +=1
+        # break
+    return ''

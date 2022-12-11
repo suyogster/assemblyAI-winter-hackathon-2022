@@ -1,14 +1,15 @@
 from moviepy.editor import *
+from moviepy.audio.fx.all import volumex
 
 
-def generate_video():
+def generate_video(no_of_clips):
     img_clips = []
     path_list = []
     lock = 0
     # accessing path of each image
     img_path = './inputs/images/'
     for image in os.listdir(img_path):
-        if image.endswith(".jpg"):
+        if image.endswith(".png"):
             path_list.append(os.path.join(img_path, image))
     # creating slide for each image
     # print(path_list)
@@ -18,11 +19,11 @@ def generate_video():
         img_clips.append(slide)
 
     video = concatenate_videoclips(img_clips, method='compose')
-    video.write_videofile("./output/videos/output.mp4", fps=24)
+    video.write_videofile("./outputs/videos/output.mp4", fps=24)
 
     clip1 = VideoFileClip("./outputs/videos/output.mp4")
     subclips = []
-    no_of_clips = 7
+    # no_of_clips = 7
     x = 0
     for i in range(no_of_clips):
         clip = clip1.subclip(x, x+5)
@@ -34,12 +35,18 @@ def generate_video():
     # final audio clip
     final_audio_clip = []
     final_audio_clip.append(AudioFileClip('./inputs/audio/audio.mp3'))
-    final_audio_clip.append(AudioFileClip('./inputs/audio/bg_music.mp3'))
+    # final_audio_clip.append(AudioFileClip('./inputs/audio/music.mp3'))
     final_audio = concatenate_audioclips(final_audio_clip)
 
     # showing final clip
     final = concatenate_videoclips(
         subclips, method='compose').set_audio(final_audio)
-    final.write_videofile("./videos/Generated_story.mp4", fps=24)
-    os.remove("output.mp4")
+
+    background_clip = AudioFileClip('./inputs/audio/music.mp3')
+    background_clip = background_clip.fx(volumex,0.4)
+    new_audioclip = CompositeAudioClip([final.audio, background_clip])
+    final.audio = new_audioclip
+
+    final.write_videofile("./outputs/videos/Generated_story.mp4", fps=24)
+    os.remove("./outputs/videos/output.mp4")
     print("All step executed succesfully")

@@ -1,5 +1,5 @@
 import requests
-from api_key import UBER_DUCK_API_SECRET, UBER_DUCK_KEY
+from api_keys import UBER_DUCK_API_SECRET, UBER_DUCK_KEY
 
 url = "https://api.uberduck.ai/speak"
 

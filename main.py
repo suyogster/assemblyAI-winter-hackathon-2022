@@ -12,18 +12,26 @@ from utils import runcmd
 
 if __name__ == '__main__':
     # get gradio text
-    gradio_input = 'An old man with a happy ending'
-    story = gradio_input_to_story(gradio_input)
+    # gradio_input = 'An old man with a happy ending'
+    # story = gradio_input_to_story(gradio_input)
     print('Generated Story')
-    audio_length = get_audio_length('outputs/audio')  # pass path of audio
-    print('Generated Audio Length')
-    background_music = music_generator()
-    runcmd('wget -O /inputs/audio/ music.mp3 '+music_generator())
-    print('Generated background_music')
-    story_voice = generate_speech(story)
+
+    # story_voice = generate_speech(story)
     print('Generated story_voice')
+
+    audio_length = get_audio_length('./inputs/audio')  # pass path of audio
+    print('Generated Audio Length')
+
+    # background_music = music_generator(duration=audio_length)
+    # runcmd('wget -O /inputs/audio/music.mp3 '+ background_music)
+
+    # print('Generated background_music')
+
+
     prompts = generate_prompts()
-    print('Generated Prompts')
-    story_images = generate_image(prompts)
-    print('Generated Images')
-    story_video = generate_video()
+    # print('Generated Prompts')
+
+    # story_images = generate_image(prompts)
+    # print('Generated Images')
+
+    story_video = generate_video(len(prompts))
