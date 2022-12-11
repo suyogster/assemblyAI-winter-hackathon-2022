@@ -2,7 +2,8 @@
 
 Ai Talebook is an AI solution for providing a complete storytelling experience.
 
-![](https://github.com/suyogster/assemblyAI-winter-hackathon-2022/blob/master/inputs/ai_talebook.jpg | width=250)
+![](https://github.com/suyogster/assemblyAI-winter-hackathon-2022/blob/master/inputs/ai_talebook.jpg)
+<img src="https://github.com/suyogster/assemblyAI-winter-hackathon-2022/blob/master/inputs/ai_talebook.jpg" width="48">
 
 
 ## Components
