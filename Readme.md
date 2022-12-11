@@ -13,6 +13,7 @@ Due to GPU and computation limitations we used following components:
 - Background Music Generator : MuBert
 - Text to Prompt to Image Generator : Lexica
 - Image, Music, Voice To Video Generator : MoviePy
+- Question Answering the Story: Assembly API, Open AI API
 
 ## Installation
 
