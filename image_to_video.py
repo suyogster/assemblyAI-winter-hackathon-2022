@@ -10,10 +10,13 @@ def generate_video(no_of_clips):
     img_path = './inputs/images/'
     for image in os.listdir(img_path):
         if image.endswith(".png"):
-            path_list.append(os.path.join(img_path, image))
+            path_list.append(image)
     # creating slide for each image
     # print(path_list)
-    path_list.sort()
+    final_output = [ img_path+str(i)+".png" for i in sorted([ int(num.split('.')[0]) for num in path_list])]
+
+    path_list = final_output
+    print(path_list)
     for img_path in path_list:
         slide = ImageClip(img_path, duration=5)
         img_clips.append(slide)
