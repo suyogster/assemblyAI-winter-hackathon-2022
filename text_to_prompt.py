@@ -81,7 +81,7 @@ def segment_prompts():
     return chunk
 
 def add_key_words():
-    general = ['mdjrny-v4 style', 'animation', 'highly detailed', 'sharp focus', 'illustration', '8k']
+    general = ['mdjrny-v4 style', 'animation', 'highly detailed', 'sharp focus', 'illustration', '8k', 'vivid colors', 'magical']
     light = ['bright', 'dark', 'humid', 'mist']
     art = ['artstation', 'concept art', 'smooth', 'high contrast', 'Matte painting', 'photorealistic', 'concept art', 'digital painting']
     return general+[ random.choice(light)] + [random.choice(art)]
@@ -99,6 +99,7 @@ def generate_prompts():
         final_prompts.append(prompt)
         # print(value)
         # break
+    print(final_prompts)
     return final_prompts
 
 
