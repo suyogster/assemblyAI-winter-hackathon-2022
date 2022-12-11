@@ -7,19 +7,32 @@ from nltk.tokenize import word_tokenize, sent_tokenize
 stop_words = set(stopwords.words('english'))
 from math import ceil, floor
 import random
+import os
+import librosa
 
-def get_audio_length(audio_length):
-    return audio_length
+def get_audio_length(audio_path):
+    files = [filename for filename in os.listdir(audio_path) if filename.startswith("audio")]
+    duration = 0
+    # print(audio_path)
+    # print(files)
+    if files:
+        for file in files:
+            file_path = audio_path+'/'+file
+            # print('File path: ', file_path)
+            duration += librosa.get_duration(filename= file_path)
+    # print('Duration of audio: ', duration)
+    return duration
 
 def chunk_into_n(lst, n):
   size = ceil(len(lst) / n)
+  print(lst,n, len(lst))
   return list(
     map(lambda x: lst[x * size:x * size + size],
     list(range(n)))
   )
 
 def round_to_multiple(number, multiple):
-    return multiple * ceil(number / multiple)
+    return ceil(number / multiple)
 
 # Rounding 23 to a multiple of 5
 
@@ -62,22 +75,39 @@ def get_prompt(story_path = "inputs/text/story.txt"):
             prompts.append(' '.join(filtered_tokens))
             # print(filtered_tokens)
             # break
+    # print(prompts)
     return prompts
 
 def chunking_recursive(no_of_images, prompt, counter):
-    if no_of_images < 0.7 * len(prompt):
+    lenght_of_prompt = len(prompt)
+    if counter >= lenght_of_prompt:
+            counter = ceil(lenght_of_prompt/2)
+
+    if no_of_images == lenght_of_prompt:
+        # return chunk_into_n(prompt, no_of_images)
+        # print('-'*300)
+        # print(prompt, lenght_of_prompt)
+        return prompt
+
+    elif no_of_images < lenght_of_prompt:
         return chunk_into_n(prompt, no_of_images)
+
     else:
         value = prompt[counter]
         prompt.insert(counter+1,value)
-        chunking_recursive(no_of_images, counter+3)
+        # print(no_of_images, lenght_of_prompt, counter, prompt)
+        return chunking_recursive(no_of_images,prompt, counter+3)
 
 def segment_prompts():
     prompt = get_prompt()
-    audio_length = get_audio_length(5) # pass path of audio
+    audio_length = get_audio_length('outputs/audio') # pass path of audio
     duration = 5 # number of seconds an image is shown
     no_of_images = round_to_multiple(audio_length, duration)
     chunk = chunking_recursive(no_of_images, prompt, 0)
+    # chunk = chunking_recursive(5, prompt, 0)
+
+    # print('-'*200)
+    # print(chunk)
     return chunk
 
 def add_key_words():
@@ -89,9 +119,12 @@ def add_key_words():
 def generate_prompts():
     prompts = segment_prompts()
     final_prompts = []
+    # print('Prompts: ', prompts, type(prompts))
     for prompt in prompts:
         selection = add_key_words()
-        prompt = prompt + selection
+        # print(prompt, selection)
+
+        prompt = [prompt] + selection
         # print(prompt)
         # print('-'*20)
         # print(selection)
@@ -99,8 +132,8 @@ def generate_prompts():
         final_prompts.append(prompt)
         # print(value)
         # break
-    print(final_prompts)
+    # print(final_prompts, len(final_prompts))
     return final_prompts
 
 
-# generate_prompts()
+generate_prompts()
