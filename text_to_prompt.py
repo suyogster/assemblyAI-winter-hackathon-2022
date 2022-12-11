@@ -45,7 +45,7 @@ def round_to_multiple(number, multiple):
 # PunktSentenceTokenizer from the nltk.tokenize.punkt module
 
 def read_story(file_path):
-    f = open(file_path, "r")
+    f = open(file_path, "r", encoding='utf-8')
     return f.read()
 
 
