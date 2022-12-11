@@ -28,11 +28,12 @@ pip install -r requirements.txt
 ```
 
 ## Run
-
+python (Python 3.10)
 ```python (Python 3.10)
 python main.py
 ```
 
+API server (WIP)
 ```API server (WIP)
 uvicorn main:app --reload
 ```
