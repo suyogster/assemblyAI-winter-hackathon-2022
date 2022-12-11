@@ -15,6 +15,9 @@ Due to GPU and computation limitations we used following components:
 - **Image, Music, Voice To Video Generator** : MoviePy
 - **Question Answering the Story**: Assembly API, Open AI API
 
+## More about AI Talebook
+<img src="https://github.com/suyogster/assemblyAI-winter-hackathon-2022/blob/master/inputs/Talebook_diagram.png" width="812" height="512">
+
 ## Installation
 
 Activate env and install requirements.
