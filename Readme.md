@@ -7,12 +7,12 @@ Ai Talebook is an AI solution for providing a complete storytelling experience.
 
 
 ## Components
-
-- A Story Generator
-- Story Text To Voice Generator
-- Background Music Generator
-- Text to Prompt to Image Generator
-- Image, Music, Voice To Video Generator
+Due to GPU and computation limitations we used following components:
+- A Story Generator : Open AI API
+- Story Text To Voice Generator : Uberduck API
+- Background Music Generator : MuBert
+- Text to Prompt to Image Generator : Lexica
+- Image, Music, Voice To Video Generator : MoviePy
 
 ## Installation
 
