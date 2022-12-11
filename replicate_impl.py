@@ -1,5 +1,5 @@
 import replicate
-from api_key import REPLICATE_TOKEN
+from api_keys import REPLICATE_TOKEN
 
 repl = replicate.Client(api_token=REPLICATE_TOKEN)
 model = repl.models.get("stability-ai/stable-diffusion")
