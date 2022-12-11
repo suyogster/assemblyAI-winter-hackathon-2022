@@ -14,7 +14,7 @@ Ai Talebook is an AI solution for providing a complete storytelling experience.
 
 Activate env and install requirements.
 
-'''bash
+'''python
 pip install -r requirements.txt
 
 '''
