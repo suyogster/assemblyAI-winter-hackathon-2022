@@ -20,7 +20,7 @@ def generate_image(prompts):
 
         response = requests.get(url[0], stream=True)
 
-        with open('./inputs/images/img_'+str(counter)+'.png', 'wb') as out_file:
+        with open('./inputs/images/'+str(counter)+'.png', 'wb') as out_file:
             shutil.copyfileobj(response.raw, out_file)
         del response
 
